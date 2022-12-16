@@ -68,19 +68,19 @@ def Serveur(data):
                 conn.send(output.encode())
             except:
                 conn.send(f'erreur avec la commande : {data}'.encode())
-        else:
-            conn.send('COMMANDE NON RECONNUE!!!'.encode())
 
-    if data[0:6].lower() == 'linux:':
-        if sys.platform == "linux" or sys.platform == "linux2":
+        elif data[0:6].lower() == 'linux:':
+            if sys.platform == "linux" or sys.platform == "linux2":
                 try:
                     cmd = data.split(":", 1)[1]
                     output = subprocess.getoutput(cmd)
                     conn.send(output.encode())
                 except:
-                    conn.send(f'erreur avec la commande : {data} / Essayer avec une commande Linux précédé par <linux'.encode())
+                    conn.send(
+                        f'erreur avec la commande : {data} / Essayer avec une commande Linux précédé par <linux'.encode())
         else:
             conn.send('COMMANDE NON RECONNUE!!!'.encode())
+
 
 data = ""
 try:
