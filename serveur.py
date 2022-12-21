@@ -13,7 +13,7 @@ else:
     port = 50
 
 def Serveur(data):
-    if sys.platform == 'win32':
+    #if sys.platform == 'win32':
         commande = data.split(' ')[0]
         if commande == "ram":
             rep = str(f'RAM utilisé :{psutil.virtual_memory().percent}% \nMémoire vive Total :{psutil.virtual_memory().total / 1024 / 1024 / 1024:.2f} GB \nMémoire libre restante :{psutil.virtual_memory().available / 1024 / 1024 / 1024:.2f} GB')
@@ -70,7 +70,7 @@ def Serveur(data):
                 conn.send(f'erreur avec la commande : {data}'.encode())
 
         elif data[0:6].lower() == 'linux:':
-            if sys.platform == "linux" or sys.platform == "linux2":
+            #if sys.platform == "linux" or sys.platform == "linux2": #mac os is also a unix like system
                 try:
                     cmd = data.split(":", 1)[1]
                     output = subprocess.getoutput(cmd)
